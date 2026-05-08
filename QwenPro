@@ -1,0 +1,3 @@
+FROM qwen2.5-coder:32b-instruct-q8_0
+PARAMETER num_ctx 131072
+PARAMETER num_gpu 81

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WellnessMats Search Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen p-8">
+    <div class="max-w-4xl mx-auto">
+        <header class="mb-12 text-center">
+            <h1 class="text-4xl font-bold text-orange-500 mb-2">WellnessMats Vault</h1>
+            <p class="text-gray-400">Local Pricing Intelligence - Portfolio Blitz 2026</p>
+        </header>
+
+        <div class="bg-gray-800 p-6 rounded-xl shadow-2xl mb-8">
+            <input type="text" id="searchInput" placeholder="Search by model or size (e.g., Original 3x2)..." 
+                class="w-full bg-gray-700 border-none rounded-lg p-4 text-xl focus:ring-2 focus:ring-orange-500 transition-all outline-none">
+        </div>
+
+        <div id="results" class="space-y-4">
+            <!-- Results will be injected here -->
+        </div>
+    </div>
+
+    <script>
+        let data = [];
+
+        async function loadData() {
+            try {
+                const response = await fetch('./data/wellness_mats_data.json');
+                const json = await response.json();
+                data = json.wellness_mats;
+                displayResults(data);
+            } catch (error) {
+                document.getElementById('results').innerHTML = `
+                    <div class="bg-red-900/50 p-4 rounded-lg border border-red-500 text-center">
+                        Error loading data. Ensure 'wellness_mats_data.json' exists in the data folder.
+                    </div>
+                `;
+            }
+        }
+
+        function displayResults(items) {
+            const container = document.getElementById('results');
+            container.innerHTML = '';
+
+            if (items.length === 0) {
+                container.innerHTML = '<p class="text-center text-gray-500">No matching products found.</p>';
+                return;
+            }
+
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'bg-gray-800 p-4 rounded-lg border border-gray-700 hover:border-orange-500 transition-colors flex justify-between items-center';
+                card.innerHTML = `
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-100">${item.model}</h3>
+                        <p class="text-sm text-gray-400">${item.dimensions}</p>
+                    </div>
+                    <div class="text-2xl font-bold text-orange-400">$${item.price}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = data.filter(item => 
+                item.model.toLowerCase().includes(query) || 
+                item.dimensions.toLowerCase().includes(query)
+            );
+            displayResults(filtered);
+        });
+
+        loadData();
+    </script>
+</body>
+</html>

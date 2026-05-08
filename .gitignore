@@ -1,0 +1,38 @@
+# Portfolio Blitz 2026 - Hardened Gitignore
+
+# Dependencies
+node_modules/
+tools/
+venv/
+.pnpm-debug.log*
+
+# Build Artifacts
+dist/
+build/
+*.aab
+*.apk
+*.ipa
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+*.keystore
+!debug.keystore
+*.jks
+
+# Hardware & Telemetry Logs
+*.log
+telemetry_data/
+gpu_stats.json
+
+# IDE & OS Trash
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.expo/
+
+# OpenClaw Persistence
+.agents/data/
+.agents/cache/

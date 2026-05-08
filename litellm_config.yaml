@@ -1,0 +1,13 @@
+model_list:
+  - model_name: router
+    litellm_params:
+      model: ollama/llama3.2:1b
+      api_base: http://localhost:11434
+  - model_name: reasoner
+    litellm_params:
+      model: ollama/qwen2.5-coder:32b
+      api_base: http://localhost:11434
+      fallbacks: ["gemini-fallback"]
+  - model_name: gemini-fallback
+    litellm_params:
+      model: gemini/gemini-1.5-flash
