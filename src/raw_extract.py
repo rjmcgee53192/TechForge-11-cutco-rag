@@ -1,7 +1,7 @@
 import pypdf
 import os
 
-pdf_path = r"c:\Users\rjmcg\OneDrive\Desktop\Portfolio-Blitz-2026\projects\11-techforge-rag\data\wellness_industrial equipments.pdf"
+pdf_path = r"c:\Users\rjmcg\OneDrive\Desktop\Portfolio-Blitz-2026\projects\11-techforge-rag\data\wellness_mats.pdf"
 output_path = r"c:\Users\rjmcg\OneDrive\Desktop\Portfolio-Blitz-2026\projects\11-techforge-rag\data\raw_dump.txt"
 
 try:

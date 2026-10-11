@@ -10,7 +10,7 @@ load_dotenv()
 
 def run_ingestion():
     # 1. Load the TechForge Price List
-    pdf_path = "./data/wellness_industrial equipments.pdf"
+    pdf_path = "./data/wellness_mats.pdf"
     if not os.path.exists(pdf_path):
         print(f"Error: {pdf_path} not found.")
         return

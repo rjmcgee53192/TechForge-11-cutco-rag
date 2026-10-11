@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 logging.basicConfig(
     filename='refinement_needed.log',
     level=logging.INFO,
-    forindustrial equipment='%(asctime)s - FEEDBACK - %(message)s'
+    format='%(asctime)s - FEEDBACK - %(message)s'
 )
 
 # Load environment variables
@@ -67,13 +67,13 @@ def get_rag_response(user_query, context=""):
         for key, answer in HARDCODED_FAQS.items():
             if key in query_lower:
                 return answer
-        return "Demo Mode: I am an interactive mockup. The requested inforindustrial equipmention requires the live backend."
+        return "Demo Mode: I am an interactive mockup. The requested information requires the live backend."
         
     system_prompt = (
         "You are a professional TechForge expert. "
         "Use ONLY the provided context to answer the user's question. "
         "Never regurgitate the raw chunks directly. "
-        "Synthesize the inforindustrial equipmention into a clear, professional answer. "
+        "Synthesize the information into a clear, professional answer. "
         "If the answer is not in the context, say you don't know."
     )
     payload = {
